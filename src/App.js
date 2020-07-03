@@ -10,17 +10,55 @@ import PlayingNow from './Components/PlayingNow';
 
 const OAuthComponent = (props) => {
   const [accessToken, setAccessToken] = useState("");
-  console.log(window.location.hash)
+  const [userData, setUserData] = useState({});
+  const [tracks, setTracks] = useState("");
 
-  // useEffect(() => {
+  useEffect(() => {
+    const data = window.location.hash.substr(1).split("&");
+    console.log(data[0].split("=")[1]);
+    setAccessToken(data[0].split("=")[1]);
+  }, []);
 
-  //   const query = new URLSearchParams(window.location.search);
-  //   setAccessToken(query.get("access_token"));
-  //   console.log(accessToken);
-  // }, [])
-  // const data = fetch(window.location)
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
+  useEffect(() => {
+    const getUser = () => {
+      fetch("https://api.spotify.com/v1/me", {
+        method: "GET",
+        headers: { 'Authorization': `Bearer ${accessToken}` }
+      })
+        .then(response => response.json())
+        .then(data => {
+          // setUserData(data);
+        })
+    }
+    getUser();
+
+    const getTracks = () => {
+      fetch("https://api.spotify.com/v1/browse/categories/toplists/playlists/", {
+        method: "GET",
+        headers: { 'Authorization': `Bearer ${accessToken}` }
+      })
+        .then(response => response.json())
+        .then(data => {
+
+          !tracks && fetch(data.playlists.items[0].tracks.href, {
+            method: "GET",
+            headers: { 'Authorization': `Bearer ${accessToken}` }
+          })
+            .then(response => response.json())
+            .then(data => {
+              const trackArr = data && (data.items.map(item => item.track.external_urls.spotify))
+              console.log(trackArr)
+              setTracks(trackArr);
+            })
+
+        })
+    }
+
+    getTracks();
+
+  }, [accessToken])
+
+
   return (
     <></>
   )

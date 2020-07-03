@@ -28,8 +28,7 @@ function Authorization() {
       top = (window.screen.height / 2) - (height / 2);
 
     const w = window.open(url,
-      'Spotify',
-      'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
+      'Spotify'
     );
     // setWindow(w)
 
