@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { FetchService } from "../services/api";
 
 function Authorization() {
   // const [win, setWindow] = useState(null)
@@ -30,22 +31,10 @@ function Authorization() {
     const w = window.open(url,
       'Spotify'
     );
-    // setWindow(w)
-
-    // console.log(window.location)
   }
 
-
-  // const query = new URLSearchParams(window.location.search);
-  // const accessToken = query.get("access_token");
-  // console.log(accessToken);
-  // login()
-
   return (
-    <button onClick={() => {
-      login();
-      // history.push("//__auth_spotify_callback__");
-    }}>Log In</button>
+    <button onClick={login}>Log In</button>
   )
 
 }
