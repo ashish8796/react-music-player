@@ -30,6 +30,10 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+
           <Route exact path="/">
             {/* {
               accessToken ? <Redirect to="/dashboard" /> : <PlayingNow />
@@ -37,9 +41,7 @@ function App() {
 
             <PlayingNow />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
+
           <Route path="/__auth_spotify_callback__">
             {/* <OAuthComponent setAccessToken={setAccessToken} channel={channel} /> */}
             <OAuthComponent />

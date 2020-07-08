@@ -4,10 +4,6 @@ import { PlayerUI } from "./PlayerUI";
 
 
 function Dashboard() {
-
-  console.log("Dashboard is working");
-
-
   return (
     <>
       <PlayerUI />

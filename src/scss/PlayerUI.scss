@@ -1,0 +1,148 @@
+body {
+  font-family: "Muli", sans-serif;
+}
+
+.player-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(#353b3f, #1f2125);
+  color: #ffffff;
+}
+
+.control-button {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .text {
+    color: #a9a8a8;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    outline: none;
+    border: none;
+    background: #212428;
+    color: #ffffff;
+    font-size: 30px;
+    box-shadow: 2px 2px 9px 0 #18181a;
+  }
+}
+.back-button-cover,
+.option-lines-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2a2d31;
+  box-shadow: -4px -4px 5px 4px #3c4348;
+  border-radius: 50%;
+}
+
+.back-button {
+  margin: -0.5px 0 0 -0.5px;
+  p {
+    margin-top: -3px;
+  }
+}
+
+.option-lines {
+  justify-content: center;
+  .lines {
+    width: 20px;
+    border-top: 1px solid #ffffff;
+    margin: 2px 0;
+  }
+}
+
+.song-pic {
+  box-shadow: -6px -7px 12px 14px #394045;
+  border-radius: 50%;
+  .circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 8px solid #1f2327;
+    background-image: url("./../image/matheo-jbt-Y8QmGCl8lLk-unsplash.jpg");
+    background-size: cover;
+    box-shadow: 12px 11px 15px 0px #1a1a1d;
+  }
+
+  margin-bottom: 30px;
+}
+
+.song-name {
+  margin: 25px 0 10px 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #c9c4c4;
+  p {
+    margin: 5px 0;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #a9a8a8;
+  }
+}
+
+.song-progress {
+  width: 100%;
+
+  .dis-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #a9a8a8;
+  }
+
+  .increasing-time {
+    margin-left: 20px;
+  }
+
+  .decreasing-time {
+    margin: 2px 20px;
+  }
+
+  .indicator {
+    width: 20px;
+    height: 20px;
+    border: 5px solid black;
+    border-radius: 50%;
+  }
+
+  .progress-bar {
+    width: 88%;
+    border: 2px solid gray;
+    height: 5px;
+    background-color: yellow;
+    margin: 5px auto;
+    border-radius: 5px;
+  }
+}
+
+.player-controls {
+  width: 100%;
+  margin-top: 30px;
+
+  button {
+    margin: 0 30px;
+  }
+}
