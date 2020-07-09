@@ -56,7 +56,7 @@ body {
 .back-button {
   margin: -0.5px 0 0 -0.5px;
   p {
-    margin-top: -3px;
+    margin-top: -4px;
   }
 }
 
@@ -86,7 +86,7 @@ body {
 }
 
 .song-name {
-  margin: 25px 0 10px 0;
+  margin-top: 10px;
   font-size: 30px;
   font-weight: 700;
   color: #c9c4c4;
@@ -104,6 +104,7 @@ body {
 
 .song-progress {
   width: 100%;
+  position: relative;
 
   .dis-time {
     display: flex;
@@ -111,6 +112,7 @@ body {
     justify-content: space-between;
     font-size: 14px;
     color: #a9a8a8;
+    margin-bottom: 10px;
   }
 
   .increasing-time {
@@ -122,27 +124,93 @@ body {
   }
 
   .indicator {
-    width: 20px;
-    height: 20px;
-    border: 5px solid black;
+    position: absolute;
+    left: 5%;
+    top: 42%;
     border-radius: 50%;
+    border-left: 1px solid #373434;
+    border-top: 1px solid #373434;
+    box-shadow: 4px 2px 14px 2px #111010;
+    .inside {
+      width: 12px;
+      height: 12px;
+      border: 9px solid #1f2327;
+      border-radius: 50%;
+      background-color: yellow;
+    }
   }
 
   .progress-bar {
     width: 88%;
-    border: 2px solid gray;
+    border-top: 2px solid #161515;
     height: 5px;
     background-color: yellow;
     margin: 5px auto;
     border-radius: 5px;
+    box-shadow: 2px 2px 0px 0px #474545;
   }
 }
 
 .player-controls {
   width: 100%;
   margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .button-cover {
+    width: fit-content;
+    border: 3px solid #2a2d31;
+    box-shadow: -6px -5px 12px 7px #32383c;
+    border-radius: 50%;
+  }
+
+  .previous {
+    margin-left: 30px;
+  }
+
+  .play {
+    border: 3px solid #cc3533;
+  }
+
+  .next {
+    margin-right: 30px;
+  }
 
   button {
-    margin: 0 30px;
+    color: #a9a8a8;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    outline: none;
+    border: none;
+    background: #2d3034;
+    font-size: 35px;
+    box-shadow: 3px 4px 13px 5px #252527;
+  }
+  .previous-song {
+    p {
+      margin-right: 3px;
+      margin-top: 4px;
+    }
+  }
+
+  .next-song {
+    p {
+      margin-left: 3px;
+      margin-top: 4px;
+    }
+  }
+
+  .play-pause {
+    background-color: #ea453b;
+
+    svg {
+      font-size: 23px;
+    }
+
+    p {
+      margin-left: 2px;
+    }
   }
 }
