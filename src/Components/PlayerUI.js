@@ -73,12 +73,8 @@ export function PlayerUI() {
               </p>
             </button>
           </div>
-
         </article>
-
       </div>
-
-
     </>
   )
 }
