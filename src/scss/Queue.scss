@@ -44,7 +44,8 @@ button {
 }
 
 .btn-cover,
-.song-cover {
+.song-cover,
+.btn-shell {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -84,17 +85,41 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 10px;
+  padding: 12px 0 8px 0;
+}
+
+.song-playing {
+  background-color: rgb(18, 19, 22);
+  border-radius: 15px;
 }
 
 .song-info {
+  font-size: 18px;
+  line-height: 20px;
   text-align: start;
   margin-left: 20px;
 
   p:nth-child(2) {
-    color: #a9a8a8;
+    color: #7b7b7b;
   }
 }
 
 .btn-shell {
   margin-right: 20px;
+}
+
+.song-btn {
+  p {
+    margin-top: 4px;
+  }
+  font-size: 16px;
+}
+
+.playing {
+  border: 3px solid #cc3533;
+
+  button {
+    background-color: #ea453b;
+  }
 }
