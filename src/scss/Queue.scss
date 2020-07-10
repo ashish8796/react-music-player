@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .sect-1 {
@@ -26,7 +27,7 @@
   margin-top: 3em;
 }
 
-button {
+.btn {
   border-radius: 50%;
   width: 45px;
   height: 45px;

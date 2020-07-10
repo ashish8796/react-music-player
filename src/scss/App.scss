@@ -1,6 +1,77 @@
 .App {
   height: 100vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(#353b3f, #1f2125);
+  text-align: center;
+}
+
+.first-look {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.music-cover {
+  box-shadow: -7px -5px 12px 14px #4c545a;
+  border-radius: 50%;
+  width: fit-content;
+  margin: 50px 0;
+}
+
+.logIn-text {
+  margin-bottom: 2em;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  color: #a9a8a8;
+
+  p {
+    margin-right: 10px;
+  }
+}
+
+.music-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 8px solid #1f2327;
+  background-image: url("./../image/music2.jpg");
+  background-size: cover;
+  background-position: right;
+  box-shadow: 12px 11px 15px 0px #1a1a1d;
+  position: relative;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #00000075;
+  position: absolute;
+}
+
+.logInDiv {
+  border: 6px solid #2a2d31;
+  border-radius: 16px;
+  box-shadow: -8px -8px 10px 10px #3c4348;
+}
+
+.log-in {
+  width: 200px;
+  height: 80px;
+  font-size: 40px;
+  color: gray;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  box-shadow: 7px 5px 14px 4px #18181a;
+  background: #272a2e;
+}
+
+.fa-spotify {
+  font-size: 50px;
+  color: #07d007;
 }

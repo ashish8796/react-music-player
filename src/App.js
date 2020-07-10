@@ -13,9 +13,7 @@ import Dashboard from './Components/Dashboard';
 import OAuthComponent from './Components/RedirectComponent';
 
 function App() {
-  const [reload, setReload] = useState(true);
-  // const [accessToken, setAccessToken] = useState(("accessToken" in localStorage) ? localStorage.getItem("accessToken") : "");
-  // const location = useLocation();
+  const [accessToken, setAccessToken] = useState(("accessToken" in localStorage) ? localStorage.getItem("accessToken") : "");
   // console.log(accessToken);
   const channel = new BroadcastChannel("message-channel");
 
@@ -30,20 +28,20 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
 
           <Route exact path="/">
-            {/* {
+            {
               accessToken ? <Redirect to="/dashboard" /> : <PlayingNow />
-            } */}
+            }
 
-            <PlayingNow />
+            {/* <PlayingNow /> */}
           </Route>
 
+          <Route path="/dashboard">
+            <Dashboard channel={channel} token={accessToken} />
+          </Route>
           <Route path="/__auth_spotify_callback__">
-            {/* <OAuthComponent setAccessToken={setAccessToken} channel={channel} /> */}
+            <OAuthComponent setToken={setAccessToken} />
             <OAuthComponent />
           </Route>
 

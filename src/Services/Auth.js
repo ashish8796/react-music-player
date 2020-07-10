@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { FetchService } from "../services/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 
 function Authorization() {
-  // const [win, setWindow] = useState(null)
-  const history = useHistory();
-
-
   const clientId = "e181e5c473824f39b125b6fe9b8c3c7f";
   const redirectUri = "http://localhost:3000/__auth_spotify_callback__";
 
   function login() {
 
     function getLoginURL(scopes) {
-      return 'https://accounts.spotify.com/authorize?client_id=' + clientId +
+      return FetchService.getAuthApi() + '?client_id=' + clientId +
         '&redirect_uri=' + encodeURIComponent(redirectUri) +
         '&scope=' + encodeURIComponent(scopes.join(' ')) +
         '&response_type=token';
@@ -28,15 +25,29 @@ function Authorization() {
       left = (window.screen.width / 2) - (width / 2),
       top = (window.screen.height / 2) - (height / 2);
 
-    const w = window.open(url,
+    const win = window.open(url,
       'Spotify'
     );
   }
 
   return (
-    <button onClick={login}>Log In</button>
-  )
+    <>
+      <article className="first-look">
+        <div className="music-cover">
+          <div className="music-circle">
+            <div className="overlay"></div>
+          </div>
+        </div>
+        <div className="logIn-text">
+          <p>Please Log In to </p> <FontAwesomeIcon icon={faSpotify} />.
+        </div>
+      </article>
 
+      <div className="logInDiv">
+        <button className="log-in" onClick={login}>Log In</button>
+      </div>
+    </>
+  )
 }
 
 export default Authorization;

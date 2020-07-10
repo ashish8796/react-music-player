@@ -13,7 +13,7 @@ export default function Queue() {
         </article>
         <article className="features">
           <div className="btn-cover">
-            <button className="like">
+            <button className="like btn">
               <FontAwesomeIcon icon={faHeart} />
             </button>
           </div>
@@ -21,7 +21,7 @@ export default function Queue() {
             <div className="song-picture"></div>
           </div>
           <div className="btn-cover">
-            <button className="option-btn">
+            <button className="option-btn btn">
               <FontAwesomeIcon icon={faEllipsisH} />
             </button>
           </div>
@@ -35,7 +35,7 @@ export default function Queue() {
               <p>Future</p>
             </div>
             <div className={`btn-shell ${!regulateSong && "playing"}`} style={{ boxShadow: regulateSong ? "-4px -4px 5px 4px #3c4348" : "-4px -4px 5px 4px #23272a" }}>
-              <button className='song-btn' onClick={() => {
+              <button className='song-btn btn' onClick={() => {
                 setRegulateSong(!regulateSong);
               }}>
                 {regulateSong ? <p style={{ marginLeft: "4px" }}><FontAwesomeIcon icon={faPlay} /></p> : <p><FontAwesomeIcon icon={faPause} /></p>}

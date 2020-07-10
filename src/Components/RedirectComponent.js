@@ -1,26 +1,18 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
-const OAuthComponent = ({ setAccessToken, channel }) => {
-  const history = useHistory();
-
+const OAuthComponent = ({ setToken = () => { }, channel }) => {
   useEffect(() => {
     if ((new URLSearchParams(window.location.search)).get("error") === "access_denied") {
       console.log("Acess Denied")
     }
     else {
-
       const data = window.location.hash.substr(1).split("&");
-      // localStorage.setItem("accessToken", JSON.stringify(data[0].split("=")[1]));
-      console.log(data[0].split("=")[1]);
-      setAccessToken(data[0].split("=")[1]);
-      channel.close();
-      // window.location.reload();
+      localStorage.setItem("accessToken", JSON.stringify(data[0].split("=")[1]));
+      // console.log(data[0].split("=")[1]);
+      setToken(data[0].split("=")[1]);
       setTimeout(() => {
         window.close();
-
-      }, 600)
-      // data && history.push("/dashboard");
+      }, 400)
     }
   }, []);
 

@@ -58,7 +58,7 @@ export function PlayerUI() {
               </p>
             </button>
           </div>
-          <div className="play button-cover">
+          <div className={`button-cover ${!songControl && "play"}`}>
             <button className="play-pause" onClick={() => {
               setSongControl(!songControl);
             }}>

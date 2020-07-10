@@ -11,7 +11,6 @@ body {
   flex-direction: column;
   align-items: center;
   background: linear-gradient(#353b3f, #1f2125);
-  color: #ffffff;
 }
 
 .control-button {
@@ -38,7 +37,6 @@ body {
     outline: none;
     border: none;
     background: #212428;
-    color: #ffffff;
     font-size: 30px;
     box-shadow: 2px 2px 9px 0 #18181a;
   }
@@ -159,19 +157,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
 
-  .button-cover {
-    width: fit-content;
-    border: 3px solid #2a2d31;
-    box-shadow: -6px -5px 12px 7px #32383c;
-    border-radius: 50%;
-  }
-
   .previous {
     margin-left: 30px;
-  }
-
-  .play {
-    border: 3px solid #cc3533;
   }
 
   .next {
@@ -204,8 +191,6 @@ body {
   }
 
   .play-pause {
-    background-color: #ea453b;
-
     svg {
       font-size: 23px;
     }
@@ -213,5 +198,20 @@ body {
     p {
       margin-left: 2px;
     }
+  }
+}
+
+.button-cover {
+  width: fit-content;
+  border: 3px solid #2a2d31;
+  box-shadow: -6px -5px 12px 7px #32383c;
+  border-radius: 50%;
+}
+
+.play {
+  border: 3px solid #cc3533;
+
+  .play-pause {
+    background-color: #ea453b;
   }
 }
