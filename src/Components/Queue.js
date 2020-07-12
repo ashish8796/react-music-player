@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisH, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import spotifyApi from "../services/api";
 
-export default function Queue() {
+
+export default function Queue({ tracks }) {
   const [regulateSong, setRegulateSong] = useState(true);
+  useEffect(() => {
+    if (tracks) {
+      console.log(tracks)
+      spotifyApi.get(`tracks/?ids=${tracks.join(",")}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+    // fetch(tracks[0])
+  })
 
   return (
     <div className="queue">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PlayerUI } from "./PlayerUI";
 import Queue from "./Queue";
 import { getUser, getTracks } from "../services/api";
@@ -6,16 +6,19 @@ import { getUser, getTracks } from "../services/api";
 
 
 function Dashboard({ channel, token }) {
+  const [tracks, setTracks] = useState([]);
   channel.close();
   useEffect(() => {
     getUser();
-    getTracks();
-  })
+    const trackIdArr = getTracks();
+    console.log(trackIdArr);
+    setTracks(trackIdArr);
+  }, [])
 
   return (
     <>
       {/* <PlayerUI /> */}
-      <Queue />
+      <Queue tracks={tracks} />
     </>
   )
 }

@@ -61,8 +61,9 @@ export const getUser = () => {
     })
 }
 // getUser();
-
+let trackIdArr = []
 export const getTracks = () => {
+
   new FetchService().get("browse/categories/toplists/playlists/")
     .then(response => response.json())
     .then(data => {
@@ -72,12 +73,15 @@ export const getTracks = () => {
       })
         .then(response => response.json())
         .then(data => {
-          // console.log(data);
-          const trackArr = (data.error) ? [] : (data.items.map(item => item.track.external_urls.spotify));
-          console.log(trackArr);
+          console.log(data);
+          trackIdArr = (data.error) ? [] : (data.items.map(item => item.track.id));
+          // console.log(trackIdArr);
+          // return trackIdArr;
           // (trackArr.length) && setTracks(trackArr);
         })
     })
+  console.log(trackIdArr)
+  return trackIdArr;
 }
 
 // getTracks();
