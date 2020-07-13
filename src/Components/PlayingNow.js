@@ -1,5 +1,4 @@
 import React from "react";
-import Authorization from "../Services/Auth";
 import { PlayerUI } from "./PlayerUI";
 
 export default function PlayingNow() {
@@ -7,7 +6,6 @@ export default function PlayingNow() {
 
   return (
     <>
-      <Authorization />
     </>
   )
 }
