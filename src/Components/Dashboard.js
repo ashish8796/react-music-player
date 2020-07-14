@@ -6,8 +6,8 @@ function Dashboard({ channel, token }) {
 
   return (
     <>
-      {/* <PlayerUI /> */}
-      <Queue />
+      <PlayerUI />
+      {/* <Queue /> */}
     </>
   )
 }

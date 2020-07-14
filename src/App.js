@@ -3,10 +3,9 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from "react-router-dom";
-import PlayingNow from './Components/PlayingNow';
+import CreatePlayList from './Components/WelcomePage';
 import Dashboard from './Components/Dashboard';
 
 function App() {
@@ -15,10 +14,9 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          {/* <Route exact path="/">
-            <PlayingNow />
-          </Route> */}
-
+          <Route exact path="/">
+            <CreatePlayList />
+          </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
