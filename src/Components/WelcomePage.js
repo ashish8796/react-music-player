@@ -1,24 +1,38 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { actions } from "../store/actionTypes";
+
 
 export default function CreatePlayList() {
   const history = useHistory();
-  const [createPlaylist, setCreatePlaylist] = useState(false);
-  const [trackArr, setTrackArr] = useState([]);
-  console.log(trackArr);
-
+  const [createPlaylist, setCreatePlaylist] = useState(false)
+  const dispatch = useDispatch();
 
   const selectSongs = (e) => {
-    console.log(e.target.files);
     const files = e.target.files;
     const urlArr = [];
+
     for (let i = 0; i < files.length; i++) {
-      let file = files[0];
+      let file = files[i];
+      // console.log("lastModified" in file);
       let url = URL.createObjectURL(new Blob([file], { type: "audio" }));
-      urlArr.push(url);
+      let name, id;
+      for (let key in file) {
+        if (key === "name") {
+          name = file[key]
+        };
+        if (key === "lastModified") {
+          id = file[key]
+        };
+      }
+      urlArr.push({
+        name: name.split(".")[0],
+        url: url,
+        id: id
+      });
     }
-    console.log(urlArr);
-    setTrackArr(urlArr);
+    dispatch(actions.storeSongUrl(urlArr));
     history.push("/dashboard");
   }
 

@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { PlayerUI } from "./PlayerUI";
 import Queue from "./Queue";
+import { Switch, Route } from "react-router-dom";
 
-function Dashboard({ channel, token }) {
+
+function Dashboard() {
 
   return (
-    <>
-      <PlayerUI />
-      {/* <Queue /> */}
-    </>
+    <Switch>
+      <Route path="/">
+        <Queue />
+      </Route>
+      <Route path="/playerUi">
+        <PlayerUI />
+      </Route >
+    </Switch>
   )
 }
 

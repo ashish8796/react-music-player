@@ -7,22 +7,27 @@ import {
 } from "react-router-dom";
 import CreatePlayList from './Components/WelcomePage';
 import Dashboard from './Components/Dashboard';
+import { store } from './store/Store';
+import { Provider } from 'react-redux';
+
 
 function App() {
 
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <CreatePlayList />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/">
+              <CreatePlayList />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
