@@ -1,9 +1,28 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-export function PlayerUI() {
+export default function PlayerUI() {
   const [songControl, setSongControl] = useState(true);
+  const { currentSong: songId, songsUrl } = useSelector(state => state)
+  const currentSong = songsUrl.filter(url => songId == url.id)[0].url;
+  const songElement = document.createElement("audio");
+
+  const handleClick = (e) => {
+    console.log(currentSong)
+    songElement.setAttribute("src", currentSong);
+    if (songElement.paused) {
+      songElement.play()
+    }
+    !songControl && songElement.pause();
+    setSongControl(!songControl);
+  }
+  // console.log(songsUrl)
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <>
@@ -59,9 +78,7 @@ export function PlayerUI() {
             </button>
           </div>
           <div className={`button-cover ${!songControl && "play"}`}>
-            <button className="play-pause" onClick={() => {
-              setSongControl(!songControl);
-            }}>
+            <button className="play-pause" onClick={handleClick}>
               {songControl ? <p><FontAwesomeIcon icon={faPlay} /></p> : <p><FontAwesomeIcon icon={faPause} /></p>}
             </button>
           </div>

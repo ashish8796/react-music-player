@@ -3,10 +3,13 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { actions } from "../store/actionTypes";
 
 function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
   const history = useHistory();
   const [play, setPlay] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     currentSongId == item.id ? setPlay(!play) : setPlay(false);
@@ -19,9 +22,13 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
     >
       <div className="song-info">
         <p
-          onClick={() => { history.push("/playerUi") }}>
+          id={item.id}
+          onClick={(e) => {
+            dispatch(actions.changeCurrentSong(e.target.id))
+            history.replace("/player");
+          }}>
           {item.name.slice(0, 20)}...
-          </p>
+        </p>
       </div>
       <div
         className={`btn-shell ${play && "playing"}`}

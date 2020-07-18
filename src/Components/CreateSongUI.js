@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AddTrack from "./AddTrackInPlaylist";
+import { actions } from "../store/actionTypes";
 
 function CreateSongUI() {
-  const songUrlArr = useSelector(state => state);
+  const dispatch = useDispatch();
+  const songUrlArr = useSelector(state => state.songsUrl);
   const [currentSongId, setCurrentSongId] = useState("");
   const playing = useRef();
   const [clickeTime, setClickedTime] = useState("");
@@ -11,7 +13,7 @@ function CreateSongUI() {
   const currentSong = (e) => {
     const currentSong = e.target.children[0];
     const nextSongId = currentSong.id;
-
+    dispatch(actions.changeCurrentSong(nextSongId));
     if (playing.current && nextSongId !== currentSongId) {
       playing.current.pause();
     }

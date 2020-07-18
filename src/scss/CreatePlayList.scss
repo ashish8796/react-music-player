@@ -32,25 +32,6 @@
   position: absolute;
 }
 
-.add-song-btn {
-  width: fit-content;
-  margin: 0 auto;
-  border: 6px solid #2a2d31;
-  border-radius: 16px;
-  box-shadow: -8px -8px 10px 10px #3c4348;
-}
-
-.add-song {
-  height: 80px;
-  font-size: 40px;
-  color: gray;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  box-shadow: 7px 5px 14px 4px #18181a;
-  background: #272a2e;
-}
-
 .chose-track {
   margin-left: 20px;
   position: relative;
@@ -61,6 +42,7 @@
   .style-input {
     width: 250px;
     padding: 10px 0;
+    line-height: 50px;
     font-size: 30px;
     color: #a9a8a8;
     border: 6px solid #2a2d31;
@@ -70,7 +52,7 @@
 
   input {
     position: absolute;
-    height: 50px;
+    height: 73px;
     width: 250px;
     font-size: 30px;
     box-shadow: 7px 5px 14px 4px #18181a;
@@ -80,7 +62,7 @@
 
   .shadow {
     width: 255px;
-    height: 63px;
+    height: 76px;
     position: absolute;
     top: 0;
     box-shadow: 7px 5px 14px 0 #18181a;

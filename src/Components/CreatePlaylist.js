@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../store/actionTypes";
 
-
 export default function CreatePlayList() {
-  const history = useHistory();
-  const [createPlaylist, setCreatePlaylist] = useState(false)
   const dispatch = useDispatch();
 
   const selectSongs = (e) => {
@@ -15,7 +11,6 @@ export default function CreatePlayList() {
 
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      // console.log("lastModified" in file);
       let url = URL.createObjectURL(new Blob([file], { type: "audio" }));
       let name, id;
       for (let key in file) {
@@ -33,7 +28,6 @@ export default function CreatePlayList() {
       });
     }
     dispatch(actions.storeSongUrl(urlArr));
-    history.push("/dashboard");
   }
 
   return (
@@ -47,29 +41,16 @@ export default function CreatePlayList() {
             <div className="overlay"></div>
           </div>
         </div>
-
         <div className="playlist-text">
           <p>Create a playlist of your favriout songs.</p>
         </div>
       </article>
-      {
-        !createPlaylist ?
-          (
-            <div className="add-song-btn">
-              <button className="add-song" onClick={() => {
-                setCreatePlaylist(true)
-              }} >Create Playlist</button>
-            </div>
-          )
-          :
-          (
-            <div className="chose-track">
-              <input className="choose-song" type="file" onChange={selectSongs} multiple />
-              <div className="style-input">Select Songs
-              <div className="shadow"></div></div>
-            </div>
-          )
-      }
+      <div className="chose-track">
+        <input className="choose-song" type="file" onChange={selectSongs} multiple />
+        <div className="style-input">Create Playlist
+          <div className="shadow"></div>
+        </div>
+      </div>
     </>
   )
 }

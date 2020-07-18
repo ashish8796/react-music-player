@@ -4,7 +4,7 @@ import { faHeart, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import CreateSongUI from "./CreateSongUI";
 
 
-export default function Queue({ idArr }) {
+export default function Queue() {
 
   return (
     <div className="queue">
