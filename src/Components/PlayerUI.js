@@ -1,28 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 export default function PlayerUI() {
   const [songControl, setSongControl] = useState(true);
-  const { currentSong: songId, songsUrl } = useSelector(state => state)
-  const currentSong = songsUrl.filter(url => songId == url.id)[0].url;
-  const songElement = document.createElement("audio");
+  const [currentSongID, setCurrentSongID] = useState("");
+  const [songSrc, setSongSrc] = useState("")
+  const {
+    currentSong: songId,
+    songsUrl: songsArr
+  } = useSelector(state => state);
+  const playing = useRef();
 
-  const handleClick = (e) => {
-    console.log(currentSong)
-    songElement.setAttribute("src", currentSong);
-    if (songElement.paused) {
-      songElement.play()
+  useEffect(() => {
+    const currentSongUrl = songsArr.length > 0 && songsArr.filter(url => songId == url.id)[0].url;
+    setSongSrc(currentSongUrl);
+    setCurrentSongID(songId);
+  }, [])
+
+  useEffect(() => {
+    if (playing.current) {
+      playing.current.play();
     }
-    !songControl && songElement.pause();
+  }, [currentSongID])
+
+  const handlePlayPause = (e) => {
+    const song = e.target.children[0];
+    song.paused ? song.play() : song.pause();
+    playing.current = song;
     setSongControl(!songControl);
   }
-  // console.log(songsUrl)
-  // useEffect(() => {
 
-  // }, [])
+  const handleNextSong = (e) => {
+    const index = songsArr.findIndex(item => item.id == currentSongID);
+    const nextSongId = songsArr[index + 1].id;
+    const songUrl = songsArr[index + 1].url;
+    console.log({ index, nextSongId, songUrl })
+    playing.current.pause();
+    setCurrentSongID(nextSongId);
+    setSongSrc(songUrl);
+    setSongControl(false);
+  }
+
+  const handlePreviousSong = (e) => {
+    const index = songsArr.findIndex(item => item.id == currentSongID);
+    const previousSongId = songsArr[index - 1].id;
+    const songUrl = songsArr[index - 1].url;
+    console.log({ index, previousSongId, songUrl })
+    playing.current.pause();
+    setCurrentSongID(previousSongId);
+    setSongSrc(songUrl);
+    setSongControl(false);
+  }
 
   return (
     <>
@@ -70,7 +100,7 @@ export default function PlayerUI() {
 
         <article className="player-controls">
           <div className="previous button-cover">
-            <button className="previous-song">
+            <button className="previous-song" onClick={handlePreviousSong}>
               <p>
                 <FontAwesomeIcon icon={faCaretLeft} />
                 <FontAwesomeIcon icon={faCaretLeft} />
@@ -78,12 +108,15 @@ export default function PlayerUI() {
             </button>
           </div>
           <div className={`button-cover ${!songControl && "play"}`}>
-            <button className="play-pause" onClick={handleClick}>
+            <div className="proxy-btn" id={currentSongID} onClick={handlePlayPause}>
+              <audio src={songSrc} type="audio/mp3" />
+            </div>
+            <button className="play-pause" >
               {songControl ? <p><FontAwesomeIcon icon={faPlay} /></p> : <p><FontAwesomeIcon icon={faPause} /></p>}
             </button>
           </div>
-          <div className="next button-cover">
-            <button className="next-song">
+          <div className="next button-cover" >
+            <button className="next-song" onClick={handleNextSong}>
               <p>
                 <FontAwesomeIcon icon={faCaretRight} />
                 <FontAwesomeIcon icon={faCaretRight} />
@@ -95,4 +128,3 @@ export default function PlayerUI() {
     </>
   )
 }
-
