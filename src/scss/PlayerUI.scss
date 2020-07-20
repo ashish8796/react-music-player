@@ -87,7 +87,7 @@ body {
 
 .song-name {
   margin-top: 10px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   color: #c9c4c4;
   p {
@@ -104,7 +104,8 @@ body {
 
 .song-progress {
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
   .dis-time {
     display: flex;
@@ -112,21 +113,27 @@ body {
     justify-content: space-between;
     font-size: 14px;
     color: #a9a8a8;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .increasing-time {
-    margin-left: 20px;
+    margin-left: 16px;
   }
 
   .decreasing-time {
-    margin: 2px 20px;
+    margin: 2px 16px;
+  }
+
+  .progress-amount {
+    position: relative;
+    width: 82.5%;
+    height: 7px;
   }
 
   .indicator {
     position: absolute;
-    left: 5%;
-    top: 42%;
+    margin-left: 15px;
+    top: -4px;
     border-radius: 50%;
     border-left: 1px solid #373434;
     border-top: 1px solid #373434;
@@ -145,7 +152,7 @@ body {
     border-top: 2px solid #161515;
     height: 5px;
     background-color: yellow;
-    margin: 5px auto;
+    margin: 0 auto;
     border-radius: 5px;
     box-shadow: 2px 2px 0px 0px #474545;
   }
