@@ -151,14 +151,13 @@ export default function PlayerUI() {
             <div
               className="indicator"
               onTouchMove={(e) => {
-                // console.log("TouchMove Working");
                 const indicator = e.target.parentNode;
                 console.log(e.changedTouches[0].pageX);
                 var touches = e.changedTouches;
                 if (touches[0].pageX > 335) console.log("Length Completed")
-                if (touches[0].pageX > 335) {
+                if (touches[0].pageX < 333 && touches[0].pageX > 0) {
+                  indicator.style.left = `${(touches[0].pageX / 330) * 100}%`;
                 }
-                // indicator.style.left = "10%"
               }}>
               <div className="inside"></div>
             </div>
