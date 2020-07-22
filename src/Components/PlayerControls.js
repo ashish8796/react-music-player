@@ -6,8 +6,8 @@ import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-so
 import convertSecToMin from "../utils/changeTime";
 
 function CreatePlayerControls(props) {
-  const [songControl, setSongControl] = useState(true);
   const { currentSongID, playing, songSrc, increasingTime, decreasingTime, changeSong } = props;
+  const [songControl, setSongControl] = useState(true);
 
   const handlePlayPause = (e) => {
     const song = e.target.children[0];
@@ -28,10 +28,6 @@ function CreatePlayerControls(props) {
     setSongControl(true);
   };
 
-  const handleDrag = (e) => {
-    console.log(e.target);
-  }
-
   const handleMetaData = (e) => {
     const songDuration = e.target.duration;
     decreasingTime.current.innerText = convertSecToMin(songDuration);
@@ -43,7 +39,9 @@ function CreatePlayerControls(props) {
     decreasingTime.current.innerText = convertSecToMin(duration - e.target.currentTime)
 
     if (duration > 0) {
-      document.querySelector(".indicator").style.left = ((e.target.currentTime / duration) * 100) + "%";
+      const songProgress = document.querySelector("input[type='range']");
+      songProgress.max = duration + "";
+      songProgress.value = (e.target.currentTime) + "";
     }
   };
 
@@ -80,7 +78,6 @@ function CreatePlayerControls(props) {
       </div>
     </article>
   )
-
 }
 
 export default CreatePlayerControls;

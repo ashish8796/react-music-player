@@ -13,7 +13,6 @@ export default function PlayerUI() {
   const playing = useRef();
   const increasingTime = useRef();
   const decreasingTime = useRef();
-  const progressBar = useRef();
 
   const changeSongName = (songId) => {
     const currentSong = songsArr.filter(url => songId == url.id)[0];
@@ -37,9 +36,6 @@ export default function PlayerUI() {
       playing.current.play();
     }
   }, [currentSongID]);
-
-  const handleProgressBar = () => {
-  };
 
   const changeSong = (type) => {
     const index = songsArr.findIndex(item => item.id == currentSongID);

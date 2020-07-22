@@ -47,22 +47,11 @@ export const CreateSongProgress = ({ increasingTime, decreasingTime }) => {
         <p className="increasing-time" ref={increasingTime}>1:05</p>
         <p className="decreasing-time" ref={decreasingTime}>2:40</p>
       </div>
-      <div className="progress-amount">
-        <div
-          className="indicator"
-          onTouchMove={(e) => {
-            const indicator = e.target.parentNode;
-            console.log(e.changedTouches[0].pageX);
-            var touches = e.changedTouches;
-            if (touches[0].pageX > 335) console.log("Length Completed")
-            if (touches[0].pageX < 333 && touches[0].pageX > 0) {
-              indicator.style.left = `${(touches[0].pageX / 330) * 100}%`;
-            }
-          }}>
-          <div className="inside"></div>
-        </div>
+      <div className="progress-bar">
+        <input type="range" min="0" max="100" defaultValue={0} onChange={(e) => {
+          document.querySelector("audio").currentTime = e.target.value;
+        }} />
       </div>
-      <div className="progress-bar"></div>
     </article>
   )
 }

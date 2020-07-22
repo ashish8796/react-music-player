@@ -1,3 +1,5 @@
+@import "./Slider.scss";
+
 body {
   box-sizing: border-box;
   font-family: "Muli", sans-serif;
@@ -122,39 +124,6 @@ body {
 
   .decreasing-time {
     margin: 2px 16px;
-  }
-
-  .progress-amount {
-    position: relative;
-    width: 82.5%;
-    height: 7px;
-  }
-
-  .indicator {
-    position: absolute;
-    margin-left: 15px;
-    top: -4px;
-    border-radius: 50%;
-    border-left: 1px solid #373434;
-    border-top: 1px solid #373434;
-    box-shadow: 4px 2px 14px 2px #111010;
-    .inside {
-      width: 12px;
-      height: 12px;
-      border: 9px solid #1f2327;
-      border-radius: 50%;
-      background-color: yellow;
-    }
-  }
-
-  .progress-bar {
-    width: 88%;
-    border-top: 2px solid #161515;
-    height: 5px;
-    background-color: yellow;
-    margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 2px 2px 0px 0px #474545;
   }
 }
 
