@@ -44,8 +44,8 @@ export const CreateSongProgress = ({ increasingTime, decreasingTime }) => {
   return (
     <article className="song-progress">
       <div className="dis-time">
-        <p className="increasing-time" ref={increasingTime}>1:05</p>
-        <p className="decreasing-time" ref={decreasingTime}>2:40</p>
+        <p className="increasing-time" ref={increasingTime}>0:00</p>
+        <p className="decreasing-time" ref={decreasingTime}>0:00</p>
       </div>
       <div className="progress-bar">
         <input type="range" min="0" max="100" defaultValue={0} onChange={(e) => {

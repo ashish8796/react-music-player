@@ -11,11 +11,13 @@ export const actions = {
     }
   },
 
-  changeCurrentSong(currentSongId) {
+  changeCurrentSong(currentSongId, currentTime = "", playSong = "") {
     return {
       type: CHANGE_CURRENT_SONG,
       payload: {
-        id: currentSongId
+        id: currentSongId,
+        currentTime,
+        playSong
       }
     }
   }

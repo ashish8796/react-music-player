@@ -9,21 +9,15 @@ export default function PlayerUI() {
   const [currentSongID, setCurrentSongID] = useState("");
   const [songSrc, setSongSrc] = useState("");
   const [songName, setSongName] = useState("");
-  const { currentSong: songId, songsUrl: songsArr } = useSelector(state => state);
+  const { songStatus, songsUrl: songsArr } = useSelector(state => state);
   const playing = useRef();
   const increasingTime = useRef();
   const decreasingTime = useRef();
-
-  const changeSongName = (songId) => {
-    const currentSong = songsArr.filter(url => songId == url.id)[0];
-    const name = currentSong.name.slice(0, 20);
-    setSongName(name);
-  }
-
+  const { currentSong: songId } = songStatus;
 
   useEffect(() => {
     if (songsArr.length > 0) {
-      const currentSong = songsArr.filter(url => songId == url.id)[0];
+      const currentSong = songsArr.filter(item => songId == item.id)[0];
       const url = currentSong.url;
       changeSongName(songId);
       setSongSrc(url);
@@ -37,9 +31,14 @@ export default function PlayerUI() {
     }
   }, [currentSongID]);
 
+  const changeSongName = (songId) => {
+    const currentSong = songsArr.filter(url => songId == url.id)[0];
+    const name = currentSong.name.slice(0, 20);
+    setSongName(name);
+  }
+
   const changeSong = (type) => {
     const index = songsArr.findIndex(item => item.id == currentSongID);
-    console.log(index);
     let songId, songUrl;
 
     switch (type) {

@@ -1,13 +1,21 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable default-case */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import convertSecToMin from "../utils/changeTime";
+import { useSelector } from "react-redux";
 
 function CreatePlayerControls(props) {
   const { currentSongID, playing, songSrc, increasingTime, decreasingTime, changeSong } = props;
   const [songControl, setSongControl] = useState(true);
+  const { songStatus } = useSelector(state => state);
+
+  useEffect(() => {
+    const song = document.querySelector("audio");
+    song.currentTime = songStatus.currentTime;
+    setSongControl(!songStatus.playSong);
+  }, [])
 
   const handlePlayPause = (e) => {
     const song = e.target.children[0];
@@ -62,7 +70,9 @@ function CreatePlayerControls(props) {
             type="audio/mp3"
             onEnded={handleAudioEnded}
             onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleMetaData} />
+            onLoadedMetadata={handleMetaData}
+          // autoPlay={songStatus.playSong} 
+          />
         </div>
         <button className="play-pause" >
           {songControl ? <p><FontAwesomeIcon icon={faPlay} /></p> : <p><FontAwesomeIcon icon={faPause} /></p>}

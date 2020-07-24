@@ -2,7 +2,10 @@ import { createStore } from "redux";
 import { STORE_SONG_URL, CHANGE_CURRENT_SONG } from "./actionTypes";
 
 const initialState = {
-  currentSong: "",
+  songStatus: {
+    currentSong: "",
+    currentTime: ""
+  },
   songsUrl: []
 }
 function reducer(state = initialState, action) {
@@ -13,7 +16,13 @@ function reducer(state = initialState, action) {
     }
 
     case CHANGE_CURRENT_SONG: {
-      return { ...state, currentSong: action.payload.id }
+      return {
+        ...state, songStatus: {
+          currentSong: action.payload.id,
+          currentTime: action.payload.currentTime,
+          playSong: action.payload.playSong
+        }
+      }
     }
 
     default: return state;
