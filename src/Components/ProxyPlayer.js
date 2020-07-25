@@ -9,16 +9,15 @@ function ProxyPlayer() {
 
   console.log({ songsUrl, songStatus })
 
-  const url = songsUrl.length > 0 ? songsUrl.filter(item => item.id == songStatus.currentSong.split('-')[1])[0] : null
+  const url = songsUrl.length > 0 ? songsUrl.filter(item => item.id == songStatus.currentSong)[0] : null
 
-  // useEffect(() => {
-  //   const { pathname } = window.location;
-
-  //   if (!songStatus.playSong) {
-  //     proxyAudio.current.play();
-  //     proxyAudio.current.currenTime = songStatus.currenTime;
-  //   }
-  // }, [songStatus]);
+  useEffect(() => {
+    songStatus.playSong ? proxyAudio.current.play() : proxyAudio.current.pause();
+    // if (!)
+    //   proxyAudio.current.play();
+    //   proxyAudio.current.currenTime = songStatus.currenTime;
+    // }
+  }, [songStatus]);
 
   console.log({ url })
 

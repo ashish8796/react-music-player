@@ -11,20 +11,8 @@ function CreateSongUI() {
   const [clickeTime, setClickedTime] = useState("");
 
   const currentSong = (e) => {
-    const currentSong = e.target.children[0];
+    const currentSong = e.target;
     const nextSongId = currentSong.id;
-    dispatch(actions.changeCurrentSong(nextSongId));
-    if (playing.current && nextSongId !== currentSongId) {
-      playing.current.pause();
-    }
-
-    playing.current = currentSong;
-    nextSongId !== currentSongId && playing.current.play();
-
-    if (nextSongId === currentSongId) {
-      !currentSong.paused ? currentSong.pause() : currentSong.play()
-    }
-
     setCurrentSongId(nextSongId);
     setClickedTime(Date.now());
   }

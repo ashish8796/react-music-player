@@ -18,18 +18,10 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
   }, [currentSongId, clickeTime]);
 
   const handleSongSelect = (e) => {
-    const currentTime = playlistAudio.current.currentTime;
-    const playSong = !playlistAudio.current.paused;
-
-    playlistAudio.current.pause();
-
-    dispatch(actions.changeCurrentSong(e.target.id, currentTime, playSong));
-
-    const proxyPlayer = document.getElementById('proxy-player');
-
-    proxyPlayer.currentTime = playlistAudio.current.currentTime;
+    const proxyPlayer = document.getElementById("proxy-player");
+    const playSong = !proxyPlayer.current.paused;
+    dispatch(actions.changeCurrentSong(e.target.id, proxyPlayer.currentTime, playSong));
     proxyPlayer.play();
-
     history.replace("/player");
   };
 
@@ -56,17 +48,19 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
           }
         }
       >
-        <div className="raw-btn" onClick={(e) => {
-          const currentTime = playlistAudio.current.currentTime;
-          const playSong = !playlistAudio.current.paused;
-          dispatch(actions.changeCurrentSong(e.target.id, currentTime, playSong))
-          currentSong(e);
-        }}>
-          <audio
-            src={item.url}
-            type="audio/mp3"
-            id={`audio-${item.id}`}
-            ref={playlistAudio} />
+        <div
+          id={item.id}
+          className="raw-btn"
+          onClick={(e) => {
+            const proxyPlayer = document.getElementById("proxy-player");
+            const playSong = proxyPlayer.paused;
+            !playSong && proxyPlayer.pause();
+
+            const currentTime = proxyPlayer.currentTime;
+            dispatch(actions.changeCurrentSong(e.target.id, currentTime, playSong));
+            setPlay(!play)
+            // currentSong(e);
+          }}>
         </div>
         <button className='song-btn btn' >
           {
