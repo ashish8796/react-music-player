@@ -11,8 +11,7 @@ export default function PlayerUI() {
   const [songName, setSongName] = useState("");
   const { songStatus, songsUrl: songsArr } = useSelector(state => state);
   const playing = useRef();
-  const increasingTime = useRef();
-  const decreasingTime = useRef();
+
   const { currentSong: songId } = songStatus;
 
   useEffect(() => {
@@ -26,9 +25,9 @@ export default function PlayerUI() {
   }, [])
 
   useEffect(() => {
-    if (playing.current) {
-      playing.current.play();
-    }
+    // if (playing.current) {
+    //   playing.current.play();
+    // }
   }, [currentSongID]);
 
   const changeSongName = (songId) => {
@@ -65,10 +64,8 @@ export default function PlayerUI() {
       <CreateHelpingButtons />
       <CreateSongPic />
       <CreateSongName songName={songName} />
-      <CreateSongProgress increasingTime={increasingTime} decreasingTime={decreasingTime} />
+      <CreateSongProgress />
       <CreatePlayerControls
-        increasingTime={increasingTime}
-        decreasingTime={decreasingTime}
         currentSongID={currentSongID}
         playing={playing}
         songSrc={songSrc}

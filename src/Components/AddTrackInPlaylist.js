@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../store/actionTypes";
 import { useRef } from "react";
 
 function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
   const history = useHistory();
+  const isSongCompleted = useSelector(state => state.isSongCompleted);
   const [play, setPlay] = useState(false);
   const dispatch = useDispatch();
-  const playlistAudio = useRef()
 
   useEffect(() => {
-    currentSongId.split("-")[1] == item.id ? setPlay(!play) : setPlay(false);
+    currentSongId == item.id ? setPlay(!play) : setPlay(false);
   }, [currentSongId, clickeTime]);
+
+  useEffect(() => {
+    isSongCompleted && setPlay(false);
+    dispatch(actions.isSongCompleted(false))
+  }, [isSongCompleted])
 
   const handleSongSelect = (e) => {
     const proxyPlayer = document.getElementById("proxy-player");
-    const playSong = !proxyPlayer.current.paused;
+    const playSong = !proxyPlayer.paused;
     dispatch(actions.changeCurrentSong(e.target.id, proxyPlayer.currentTime, playSong));
     proxyPlayer.play();
     history.replace("/player");
@@ -53,13 +57,10 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
           className="raw-btn"
           onClick={(e) => {
             const proxyPlayer = document.getElementById("proxy-player");
-            const playSong = proxyPlayer.paused;
-            !playSong && proxyPlayer.pause();
-
+            const playSong = e.target.id == currentSongId ? proxyPlayer.paused : true;
             const currentTime = proxyPlayer.currentTime;
             dispatch(actions.changeCurrentSong(e.target.id, currentTime, playSong));
-            setPlay(!play)
-            // currentSong(e);
+            currentSong(e);
           }}>
         </div>
         <button className='song-btn btn' >

@@ -4,41 +4,53 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import convertSecToMin from "../utils/changeTime";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "../store/actionTypes";
 
 function CreatePlayerControls(props) {
   const { currentSongID, playing, songSrc, increasingTime, decreasingTime, changeSong } = props;
   const [songControl, setSongControl] = useState(true);
-  const { songStatus } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const { songStatus, songsArr } = useSelector(state => state);
+  const proxyPlayer = document.getElementById("proxy-player");
 
   useEffect(() => {
-    const song = document.querySelector("audio");
-    song.currentTime = songStatus.currentTime;
     setSongControl(!songStatus.playSong);
   }, [])
 
   const handlePlayPause = (e) => {
-    const song = e.target.children[0];
-    song.paused ? song.play() : song.pause();
-    playing.current = song;
+    const playSong = proxyPlayer.paused;
+    const currentTime = proxyPlayer.currentTime;
+    // const song = e.target.children[0];
+    // song.paused ? song.play() : song.pause();
+    // playing.current = song;
+    dispatch(actions.changeCurrentSong(currentSongID, currentTime, playSong));
     songControl ? setSongControl(false) : setSongControl(true);
   };
 
   const handleNextSong = (e) => {
-    changeSong("nextSong");
+    // changeSong("nextSong");
+    const index = songsArr.findIndex(item => item.id == currentSongID);
+    const songId = songsArr[(index < songsArr.length - 1) ? (index + 1) : (songsArr.length - (index + 1))].id;
+    const songUrl = songsArr[(index < songsArr.length - 1) ? (index + 1) : (songsArr.length - (index + 1))].url;
+    dispatch(actions.changeCurrentSong(songId, "", true));
   }
 
   const handlePreviousSong = (e) => {
-    changeSong("previousSong");
+    // changeSong("previousSong");
+    const index = songsArr.findIndex(item => item.id == currentSongID);
+    const songId = songsArr[(index < 1) ? ((songsArr.length - 1) - index) : (index - 1)].id;
+    const songUrl = songsArr[(index < 1) ? ((songsArr.length - 1) - index) : (index - 1)].url;
+    dispatch(actions.changeCurrentSong(songId, "", true));
   }
 
-  const handleAudioEnded = () => {
-    setSongControl(true);
-  };
+  // const handleAudioEnded = () => {
+  //   setSongControl(true);
+  // };
 
   const handleMetaData = (e) => {
     const songDuration = e.target.duration;
-    decreasingTime.current.innerText = convertSecToMin(songDuration);
+
   }
 
   const handleTimeUpdate = (e) => {
@@ -65,14 +77,6 @@ function CreatePlayerControls(props) {
       </div>
       <div className={`button-cover ${!songControl && "play"}`}>
         <div className="proxy-btn" id={currentSongID} onClick={handlePlayPause}>
-          <audio
-            src={songSrc}
-            type="audio/mp3"
-            onEnded={handleAudioEnded}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleMetaData}
-          // autoPlay={songStatus.playSong} 
-          />
         </div>
         <button className="play-pause" >
           {songControl ? <p><FontAwesomeIcon icon={faPlay} /></p> : <p><FontAwesomeIcon icon={faPause} /></p>}

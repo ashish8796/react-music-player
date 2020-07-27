@@ -1,5 +1,8 @@
 /* eslint-disable default-case */
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
+import convertSecToMin from "../utils/changeTime";
 
 export const CreateHelpingButtons = () => {
   return (
@@ -40,7 +43,18 @@ export const CreateSongName = ({ songName }) => {
   )
 }
 
-export const CreateSongProgress = ({ increasingTime, decreasingTime }) => {
+export const CreateSongProgress = () => {
+  const songCurrentTime = useSelector(state => state.songCurrentTime);
+  const increasingTime = useRef();
+  const decreasingTime = useRef();
+  const proxyPlayer = document.getElementById("proxy-player");
+
+  useEffect(() => {
+    console.log(proxyPlayer)
+    increasingTime.current.innerText = convertSecToMin(songCurrentTime);
+    decreasingTime.current.innerText = convertSecToMin(proxyPlayer.duration)
+  }, [songCurrentTime])
+
   return (
     <article className="song-progress">
       <div className="dis-time">

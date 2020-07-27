@@ -1,5 +1,7 @@
 export const STORE_SONG_URL = "STORE_SONG_URL";
 export const CHANGE_CURRENT_SONG = "CHANGE_CURRENT_SONG";
+export const IS_SONG_COMPLETED = "IS_SONG_COMPLETED";
+export const SONG_CURRENT_TIME = "SONG_CURRENT_TIME";
 
 export const actions = {
   storeSongUrl(arr) {
@@ -18,6 +20,24 @@ export const actions = {
         id: currentSongId,
         currentTime,
         playSong
+      }
+    }
+  },
+
+  isSongCompleted(isCompleted) {
+    return {
+      type: IS_SONG_COMPLETED,
+      payload: {
+        isCompleted
+      }
+    }
+  },
+
+  songCurrentTime(currentTime) {
+    return {
+      type: SONG_CURRENT_TIME,
+      payload: {
+        currentTime
       }
     }
   }
