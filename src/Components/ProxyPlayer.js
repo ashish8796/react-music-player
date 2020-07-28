@@ -9,18 +9,10 @@ function ProxyPlayer() {
   const { songStatus, songsUrl } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  // console.log({ songsUrl, songStatus })
-
   const url = songsUrl.length > 0 ? songsUrl.filter(item => item.id == songStatus.currentSong)[0] : null
 
   useEffect(() => {
-    // console.log({ vale: songStatus.playSong })
-
     songStatus.playSong ? proxyAudio.current.play() : proxyAudio.current.pause();
-    // if (!)
-    //   proxyAudio.current.play();
-    //   proxyAudio.current.currenTime = songStatus.currenTime;
-    // }
   }, [songStatus]);
 
   // console.log({ url })
