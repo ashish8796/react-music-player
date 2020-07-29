@@ -2,6 +2,7 @@ export const STORE_SONG_URL = "STORE_SONG_URL";
 export const CHANGE_CURRENT_SONG = "CHANGE_CURRENT_SONG";
 export const IS_SONG_COMPLETED = "IS_SONG_COMPLETED";
 export const SONG_CURRENT_TIME = "SONG_CURRENT_TIME";
+export const SONG_DURATION = "SONG_DURATION";
 
 export const actions = {
   storeSongUrl(arr) {
@@ -38,6 +39,15 @@ export const actions = {
       type: SONG_CURRENT_TIME,
       payload: {
         currentTime
+      }
+    }
+  },
+
+  songDuration(songDuration) {
+    return {
+      type: SONG_DURATION,
+      payload: {
+        songDuration
       }
     }
   }

@@ -35,25 +35,31 @@ export const CreateSongPic = () => {
   )
 }
 
-export const CreateSongName = ({ songName }) => {
+export const CreateSongName = () => {
+  const { songStatus, songsUrl } = useSelector(state => state);
+  const currentSong = songsUrl.filter(url => songStatus.currentSong == url.id)[0];
+
+  const name = songsUrl.length > 0 && currentSong.name.slice(0, 20);
   return (
     <article className="song-name">
-      <p>{songName}...</p>
+      <p>{name}...</p>
     </article>
   )
 }
 
 export const CreateSongProgress = () => {
-  const songCurrentTime = useSelector(state => state.songCurrentTime);
+  const { songCurrentTime, songDuration } = useSelector(state => state);
   const increasingTime = useRef();
   const decreasingTime = useRef();
+  const seek = useRef();
   const proxyPlayer = document.getElementById("proxy-player");
 
   useEffect(() => {
-    console.log(proxyPlayer)
     increasingTime.current.innerText = convertSecToMin(songCurrentTime);
-    decreasingTime.current.innerText = convertSecToMin(proxyPlayer.duration)
-  }, [songCurrentTime])
+    decreasingTime.current.innerText = convertSecToMin(songDuration);
+    seek.current.max = songDuration > 0 ? songDuration : 100;
+    seek.current.value = songCurrentTime > 0 ? songCurrentTime : 0;
+  }, [songCurrentTime, songDuration])
 
   return (
     <article className="song-progress">
@@ -62,9 +68,15 @@ export const CreateSongProgress = () => {
         <p className="decreasing-time" ref={decreasingTime}>0:00</p>
       </div>
       <div className="progress-bar">
-        <input type="range" min="0" max="100" defaultValue={0} onChange={(e) => {
-          document.querySelector("audio").currentTime = e.target.value;
-        }} />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          defaultValue={0}
+          ref={seek}
+          onChange={(e) => {
+            proxyPlayer.currentTime = e.target.value;
+          }} />
       </div>
     </article>
   )

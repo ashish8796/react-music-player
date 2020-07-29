@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import { STORE_SONG_URL, CHANGE_CURRENT_SONG, IS_SONG_COMPLETED, SONG_CURRENT_TIME, actions } from "./actionTypes";
+import { STORE_SONG_URL, CHANGE_CURRENT_SONG, IS_SONG_COMPLETED, SONG_CURRENT_TIME, SONG_DURATION, actions } from "./actionTypes";
 
 const initialState = {
   songStatus: {
@@ -8,6 +8,7 @@ const initialState = {
   },
   isSongCompleted: "",
   songCurrentTime: "",
+  songDuration: "",
   songsUrl: []
 }
 
@@ -37,10 +38,16 @@ function reducer(state = initialState, action) {
     }
 
     case SONG_CURRENT_TIME: {
-      console.log(actions.payload.currentTime)
       return {
         ...state,
-        songCurrentTime: actions.payload.currentTime
+        songCurrentTime: action.payload.currentTime
+      }
+    }
+
+    case SONG_DURATION: {
+      return {
+        ...state,
+        songDuration: action.payload.songDuration
       }
     }
 

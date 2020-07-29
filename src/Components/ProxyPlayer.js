@@ -13,13 +13,17 @@ function ProxyPlayer() {
 
   useEffect(() => {
     songStatus.playSong ? proxyAudio.current.play() : proxyAudio.current.pause();
+
   }, [songStatus]);
 
-  // console.log({ url })
-
   const handleTimeUpdate = (e) => {
-    console.log({ currentTime: e.target.currentTime })
-    dispatch(actions.songCurrentTime(e.target.currentTime));
+    const currentTime = e.target.currentTime;
+    if (currentTime) {
+      dispatch(actions.songCurrentTime(currentTime));
+    }
+    if (e.target.duration !== currentTime) {
+      dispatch(actions.isSongCompleted(false));
+    }
   }
 
   return (
@@ -31,6 +35,10 @@ function ProxyPlayer() {
       onTimeUpdate={handleTimeUpdate}
       onEnded={() => {
         dispatch(actions.isSongCompleted(true))
+      }}
+      onLoadedMetadata={(e) => {
+        dispatch(actions.songCurrentTime(e.target.currentTime));
+        dispatch(actions.songDuration(e.target.duration));
       }} />
   );
 }

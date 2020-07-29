@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../store/actionTypes";
-import { useRef } from "react";
 
 function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
   const history = useHistory();
@@ -18,14 +17,12 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
 
   useEffect(() => {
     isSongCompleted && setPlay(false);
-    dispatch(actions.isSongCompleted(false))
   }, [isSongCompleted])
 
   const handleSongSelect = (e) => {
     const proxyPlayer = document.getElementById("proxy-player");
     const playSong = !proxyPlayer.paused;
     dispatch(actions.changeCurrentSong(e.target.id, proxyPlayer.currentTime, playSong));
-    proxyPlayer.play();
     history.replace("/player");
   };
 
