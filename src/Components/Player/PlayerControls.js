@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../store/actionTypes";
+import { actions } from "../../store/actionTypes";
 
 function CreatePlayerControls(props) {
   const [songControl, setSongControl] = useState(true);
@@ -15,6 +15,10 @@ function CreatePlayerControls(props) {
   useEffect(() => {
     setSongControl(!songStatus.playSong);
   }, [])
+
+  useEffect(() => {
+    songStatus.playSong && setSongControl(false);
+  }, [songStatus.playSong])
 
   useEffect(() => {
     isSongCompleted && setSongControl(true);

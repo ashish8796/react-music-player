@@ -42,7 +42,7 @@ export default function CreatePlayList() {
           </div>
         </div>
         <div className="playlist-text">
-          <p>Create a playlist of your favriout songs.</p>
+          <p>Create a playlist of your favorite songs.</p>
         </div>
       </article>
       <div className="chose-track">

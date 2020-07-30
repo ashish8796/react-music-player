@@ -9,7 +9,7 @@
   box-shadow: -7px -5px 12px 14px #4c545a;
   border-radius: 50%;
   width: fit-content;
-  margin: 40px 0;
+  margin: 2em 0;
 }
 
 .music-circle {
@@ -33,7 +33,7 @@
 }
 
 .chose-track {
-  margin-left: 20px;
+  margin: 3em 0 0 20px;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -71,14 +71,14 @@
 }
 
 .playlist-text {
-  margin-bottom: 1.5em;
+  margin: 1.5em 0;
   font-size: 25px;
   color: #a9a8a8;
   line-height: 30px;
 }
 
 .welcome-text {
-  margin: 20px 0;
+  margin: 18px;
   font-size: 25px;
   color: #a9a8a8;
   line-height: 30px;

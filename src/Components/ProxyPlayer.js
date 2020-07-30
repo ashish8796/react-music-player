@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef } from "react";
-import { useEffect } from "react";
 import { actions } from "../store/actionTypes";
 
 function ProxyPlayer() {
@@ -35,6 +33,7 @@ function ProxyPlayer() {
       onTimeUpdate={handleTimeUpdate}
       onEnded={() => {
         dispatch(actions.isSongCompleted(true))
+        dispatch(actions.changeCurrentSong(songStatus.currentSong, "", false))
       }}
       onLoadedMetadata={(e) => {
         dispatch(actions.songCurrentTime(e.target.currentTime));

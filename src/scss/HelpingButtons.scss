@@ -1,0 +1,115 @@
+.control-button {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .text {
+    color: #a9a8a8;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    outline: none;
+    border: none;
+    background: #212428;
+    font-size: 30px;
+    box-shadow: 2px 2px 9px 0 #18181a;
+  }
+}
+
+.back-button-cover,
+.option-lines-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2a2d31;
+  box-shadow: -4px -4px 5px 4px #3c4348;
+  border-radius: 50%;
+}
+
+.proxy-back-button {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+}
+
+.fa-arrow-left {
+  color: #c9c4c4;
+  font-size: 23px;
+  margin: auto 0;
+}
+
+#option-lines {
+  background: #c9c4c4;
+}
+
+#Layer_1 {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+.raw-option-btn {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+#playlist {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  left: 50%;
+  top: 11%;
+  width: 88%;
+  transform: translateX(-50%);
+  height: 435px;
+  transition: height;
+  animation: slideInDown;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  padding: 10px;
+  background: linear-gradient(#353b3f, #1f2125);
+  border-radius: 20px;
+}
+
+.track {
+  border-radius: 8px;
+  width: 90%;
+  margin: 5px 0;
+  background-color: #212428;
+  border: 2px solid #2a2d31;
+
+  p {
+    margin: 10px auto;
+    color: #c9c4c4;
+    font-size: 19px;
+  }
+}
+
+.song:first-of-type {
+  margin-top: 15px;
+}
+
+@keyframes slideInDown {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 450px;
+  }
+}

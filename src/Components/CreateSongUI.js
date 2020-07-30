@@ -1,13 +1,10 @@
-import React, { useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import AddTrack from "./AddTrackInPlaylist";
-import { actions } from "../store/actionTypes";
 
 function CreateSongUI() {
-  const dispatch = useDispatch();
   const songUrlArr = useSelector(state => state.songsUrl);
   const [currentSongId, setCurrentSongId] = useState("");
-  const playing = useRef();
   const [clickeTime, setClickedTime] = useState("");
 
   const currentSong = (e) => {

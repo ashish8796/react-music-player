@@ -7,17 +7,21 @@ import { actions } from "../store/actionTypes";
 
 function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
   const history = useHistory();
-  const isSongCompleted = useSelector(state => state.isSongCompleted);
+  const { songStatus, isSongCompleted } = useSelector(state => state);
   const [play, setPlay] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    currentSongId == item.id ? setPlay(!play) : setPlay(false);
-  }, [currentSongId, clickeTime]);
+    songStatus.currentSong == item.id ? setPlay(!play) : setPlay(false);
+  }, [songStatus, clickeTime]);
 
   useEffect(() => {
     isSongCompleted && setPlay(false);
-  }, [isSongCompleted])
+    if (songStatus.playSong && songStatus.currentSong == item.id) {
+      setPlay(true);
+    }
+
+  }, [isSongCompleted, songStatus.playSong]);
 
   const handleSongSelect = (e) => {
     const proxyPlayer = document.getElementById("proxy-player");
@@ -54,7 +58,7 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
           className="raw-btn"
           onClick={(e) => {
             const proxyPlayer = document.getElementById("proxy-player");
-            const playSong = e.target.id == currentSongId ? proxyPlayer.paused : true;
+            const playSong = e.target.id == songStatus.currentSong ? proxyPlayer.paused : true;
             const currentTime = proxyPlayer.currentTime;
             dispatch(actions.changeCurrentSong(e.target.id, currentTime, playSong));
             currentSong(e);
