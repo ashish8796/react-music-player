@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   width: 100%;
 }
 
@@ -12,10 +11,13 @@
 }
 
 .album {
-  margin-top: 50px;
-  color: #a9a8a8;
-  font-size: 18px;
-  font-weight: 700;
+  margin-top: 10px;
+
+  marquee {
+    color: #a9a8a8;
+    font-size: 20px;
+    font-weight: 700;
+  }
 }
 
 .features {
@@ -24,7 +26,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 3em;
+  margin: 2em auto;
 }
 
 .btn {
@@ -37,6 +39,10 @@
   color: #8d8b8b;
   font-size: 20px;
   box-shadow: 2px 2px 9px 0 #18181a;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .fa-ellipsis-h,
@@ -65,24 +71,30 @@
   border: 8px solid #1f2327;
   background-image: url("./../image/matheo-jbt-Y8QmGCl8lLk-unsplash.jpg");
   background-size: cover;
-  box-shadow: 12px 11px 15px 0px #1a1a1d;
+  box-shadow: 12px 11px 13px 0px #1a1a1d;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .sect-2 {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .songs-list {
-  margin-top: 2em;
   font-weight: 600;
   color: #c9c4c4;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 400px;
 }
 
 .song {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 10px;
+  margin: 5px 10px;
   padding: 12px 0 8px 0;
 }
 
@@ -101,6 +113,11 @@
   p {
     color: #7b7b7b;
     margin: auto 0;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -115,6 +132,10 @@
   height: 100%;
   border-radius: 50%;
   opacity: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .song-btn {
@@ -129,5 +150,30 @@
 
   button {
     background-color: #ea453b;
+  }
+}
+
+@media only screen and (max-device-width: 320px) {
+  .song-info {
+    p {
+      font-size: 18px;
+    }
+  }
+
+  .song-cover {
+    box-shadow: -4px -5px 12px 14px #394045;
+    border-radius: 50%;
+  }
+
+  .song-picture {
+    width: 120px;
+    height: 120px;
+    box-shadow: 10px 9px 15px 0px #1a1a1d;
+  }
+
+  .btn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
   }
 }

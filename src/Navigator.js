@@ -14,7 +14,7 @@ const Navigator = () => {
 
   return (
     <Router>
-      <div className="App" style={{ height: window.innerHeight }}>
+      <div className="App" style={{ minHeight: window.innerHeight }}>
         <Switch>
           <Route path="/player">
             <PlayerUI />

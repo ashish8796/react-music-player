@@ -5,7 +5,7 @@ import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../store/actionTypes";
 
-function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
+function AddTrack({ item, currentSong, clickeTime }) {
   const history = useHistory();
   const { songStatus, isSongCompleted } = useSelector(state => state);
   const [play, setPlay] = useState(false);
@@ -17,8 +17,8 @@ function AddTrack({ item, currentSongId, currentSong, clickeTime }) {
 
   useEffect(() => {
     isSongCompleted && setPlay(false);
-    if (songStatus.playSong && songStatus.currentSong == item.id) {
-      setPlay(true);
+    if (songStatus.currentSong == item.id) {
+      setPlay(songStatus.playSong);
     }
 
   }, [isSongCompleted, songStatus.playSong]);

@@ -21,7 +21,7 @@ function CreatePlayerControls(props) {
   }, [songStatus.playSong])
 
   useEffect(() => {
-    isSongCompleted && setSongControl(true);
+    isSongCompleted && !songStatus.playSong && setSongControl(true);
   }, [isSongCompleted])
 
   const handlePlayPause = (e) => {

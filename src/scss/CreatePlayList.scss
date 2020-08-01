@@ -22,6 +22,10 @@
   background-position: right;
   box-shadow: 12px 11px 15px 0px #1a1a1d;
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .overlay {
@@ -33,7 +37,8 @@
 }
 
 .chose-track {
-  margin: 3em 0 0 20px;
+  margin: 2em 0 0 20px;
+  padding-bottom: 10px;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -70,6 +75,12 @@
   }
 }
 
+input[type="file"] {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .playlist-text {
   margin: 1.5em 0;
   font-size: 25px;
@@ -82,4 +93,11 @@
   font-size: 25px;
   color: #a9a8a8;
   line-height: 30px;
+}
+
+@media only screen and (max-device-width: 320px) {
+  .chose-track {
+    margin: 0;
+    padding-bottom: 20px;
+  }
 }

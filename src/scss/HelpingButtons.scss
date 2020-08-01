@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 
   .text {
     color: #a9a8a8;
@@ -36,6 +37,13 @@
   border: 2px solid #2a2d31;
   box-shadow: -4px -4px 5px 4px #3c4348;
   border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.option-lines-cover {
+  position: relative;
 }
 
 .proxy-back-button {
@@ -69,15 +77,15 @@
 }
 
 #playlist {
+  overflow-y: auto;
   position: absolute;
   display: flex;
   align-items: center;
   flex-direction: column;
   left: 50%;
-  top: 11%;
-  width: 88%;
+  top: 3.4em;
   transform: translateX(-50%);
-  height: 435px;
+  height: 420px;
   transition: height;
   animation: slideInDown;
   animation-duration: 0.2s;
@@ -97,7 +105,7 @@
   p {
     margin: 10px auto;
     color: #c9c4c4;
-    font-size: 19px;
+    font-size: 16px;
   }
 }
 

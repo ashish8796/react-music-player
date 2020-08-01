@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 export const CreateSongPic = () => {
@@ -15,7 +15,7 @@ export const CreateSongName = () => {
   const { songStatus, songsUrl } = useSelector(state => state);
   const currentSong = songsUrl.filter(url => songStatus.currentSong == url.id)[0];
 
-  const name = songsUrl.length > 0 && currentSong.name.slice(0, 20);
+  const name = (songsUrl.length > 0 && currentSong.hasOwnProperty("name")) && currentSong.name.slice(0, 20);
   return (
     <article className="song-name">
       <p>{name}...</p>
